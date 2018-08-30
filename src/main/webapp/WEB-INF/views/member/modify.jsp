@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div id="content-box" class="container text-center">
 <h1> 회원정보수정 </h1><br />
-	<form id="update_member" name="update_member" >
-	<input type="hidden" name="userid" id="userid" />
+	<form id="update_member" name="update_member"  >
+	<input type="hidden" name="userid" id="userid" value="${user.userid}"/>
 		<input type="password" id="password" name="password" placeholder="이전비밀번호 : ${user.password}"/><br /><br />
 		<input type="email" id="email" name="email" /><br /><br />
 		<input type="tel" id="phone" name="phone" /><br /><br />
@@ -29,7 +29,6 @@
 		<a id="update_member_btn" class="btn btn-primary w-25"> 업데이트 </a>
 	</div>
 <script>
-	$('#userid').attr("value", ${user.userid});
 	$('#email').attr("placeholder", "이전 이메일 : ${user.email}");
 	$('#phone').attr("placeholder", "이전 전화번호 : ${user.phone}");
 	var form = document.getElementById('update_member');
@@ -47,7 +46,7 @@
 	};
 	$('#update_member_btn').click(function(){
 		$('#update_member').attr({
-			action : "${context}/member/modify/${user.userid}"+,
+			action : "${context}/member/modify/${user.userid}",
 			method: "post"
 		}).submit();
 	});

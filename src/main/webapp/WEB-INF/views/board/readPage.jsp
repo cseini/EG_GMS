@@ -81,6 +81,5 @@ $(document).ready(function(){
  
       </div>   <!-- /.row -->
     </section><!-- /.content -->
-    </div><!-- /.content-wrapper -->
     
   

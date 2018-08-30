@@ -44,17 +44,17 @@ public class MemberController {
 	@RequestMapping("/retrieve/{userid}")
 	public String retrieve(Model model, @PathVariable String userid) {
 		logger.info("\n--------- MemberController {} !!-----","retrieve()");
-		model.addAttribute("user", memberService.retrieve(userid));
+		memberService.retrieve(userid);
 		return "retrieve";
 	}
 	@RequestMapping("/count")
 	public void count() {}
 	@RequestMapping(value="/modify/{userid}", method=RequestMethod.POST)
-	public String modify(Model model,@ModelAttribute MemberDTO member,  @PathVariable String userid) {
+	public String modify(Model model, @ModelAttribute MemberDTO member,  @PathVariable String userid) {
 		logger.info("\n--------- MemberController {} !!-----","modify()");
 		member.setUserid(userid);
 		memberService.modify(member);
-		model.addAttribute("user", memberService.retrieve(userid));
+		model.addAttribute("user",memberService.retrieve(userid));
 		return "retrieve";
 	}
 	@RequestMapping(value="/remove/{userid}", method=RequestMethod.POST)

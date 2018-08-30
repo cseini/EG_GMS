@@ -85,6 +85,5 @@ $(document).ready(function(){
 	<!-- /.row -->
 </section>
 <!-- /.content -->
-</div>
 <!-- /.content-wrapper -->
 

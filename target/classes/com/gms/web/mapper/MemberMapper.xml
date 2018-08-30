@@ -9,7 +9,7 @@
     VALUES (#{userid}, #{password}, #{name}, #{ssn}, #{age}, #{gender}, #{teamid}, #{roll}, #{subject}, #{email}, #{phone})
   </insert>
   <select id="selectOne" resultType="com.gms.web.domain.MemberDTO">
-    SELECT USERID, NAME, SSN, AGE, GENDER, TEAMID, ROLL, PHONE, EMAIL FROM member
+    SELECT USERID, PASSWORD, NAME, SSN, AGE, GENDER, TEAMID, ROLL, PHONE, EMAIL FROM member
     WHERE USERID LIKE #{userid}
   </select>
   <select id="login" resultType="string">
