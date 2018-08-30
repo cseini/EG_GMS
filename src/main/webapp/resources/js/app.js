@@ -1,4 +1,4 @@
-"use strict"; /*엄격한문법적용-틀리면 에러처리하라!*/
+/*"use strict"; 엄격한문법적용-틀리면 에러처리하라!
 var app = app || {};
 app = {
 	init : x=>{
@@ -12,12 +12,13 @@ app = {
 		$('#login_btn').click(()=>{
 			location.href=app.x()+'/move/auth/member/login';
 		});
-		$('#logout_btn').click(()=>{
-			location.href=app.x()+'/member/logout';
-		});
 		$('#add_btn').click(()=>{
 			location.href=app.x()+'/move/auth/member/add';
 		});
+		$('#logout_btn').click(()=>{
+			location.href=app.x()+'/member/logout';
+		});
+		
 		$('#login_form_btn').click(()=>{
 			$('#login_form').attr({
 				action : app.x()+"/member/login",	
@@ -25,10 +26,10 @@ app = {
 			}).submit();
 		});
 		$('#join_form_btn').click(()=>{
-			/*var form = document.getElementById('join_form');
+			var form = document.getElementById('join_form');
 			form.action = app.x()+"/member/add";
 			form.method = "post";
-			form.submit();*/
+			form.submit();
 			$('#join_form').attr({
 				action: app.x()+"/member/add",
 				method: "post"
@@ -90,10 +91,10 @@ app.i=()=>{
 var user = user || {};
 user.session = x=>{
 	$.each(x, function(k,v){
-		/*alert('key:'+k+', value:'+v)*/
+		alert('key:'+k+', value:'+v)
 		sessionStorage.setItem(k,v);
 	});
 }
 user.get = x=>{
 	return sessionStorage.getItem(x);
-}
+}*/

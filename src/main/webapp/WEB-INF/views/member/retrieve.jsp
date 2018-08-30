@@ -38,5 +38,10 @@
 		<a id="move_delete_form" class="btn btn-primary w-250px">회원탈퇴 이동</a>
 	</div>
 <script>
-	
+	$('#move_update_form').click(function(){
+		location.href='${context}/move/login/member/modify';
+	});
+	$('#move_delete_form').click(function(){
+		location.href='${context}//move/login/member/remove';
+	});
 </script>

@@ -3,13 +3,27 @@
   <div class="container">
     <a class="navbar-brand" href="#">Yanolja!</a>
     <div class="float-right">
-	    <a id="retrieve_btn" class="btn btn-primary" href="#">${user.name }님의 페이지</a>
+	    <a id="retrieve_btn" class="btn btn-primary" >${user.name }님의 페이지</a>
+	    <a id="board-write"  class="btn btn-primary" >게시글 쓰기</a>
+	    <a id="board_list" class="btn btn-primary">게시글 목록 보기</a>
 	    <a id="logout_btn" class="btn btn-primary w-100px " href="#">로그아웃</a>
     </div>
   </div>
 </nav>
 <script>
-	if(!'${user}'==""){
+	/* if(!'${user}'==""){
 		user.session({userid:'${user.userid}',name:'${user.name}',teamid:'${user.teamid}',roll:'${user.roll}',age:'${user.age}',gender:'${user.gender}',ssn:'${user.ssn}',phone:'${user.phone}',email:'${user.email}'});
-	}
+	} */
+	$('#logout_btn').click(function(){
+		location.href='${context}/member/logout';
+	});
+	$('#retrieve_btn').click(function(){
+		location.href='${context}/member/retrieve/${user.userid}';
+	});
+	$('#board-write').click(function(){
+		location.href='${context}/move/login/board/register'
+	});
+	$('#board_list').click(function(){
+		location.href='${context}/move/login/board/readPage'
+	});
 </script>

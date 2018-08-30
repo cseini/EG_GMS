@@ -10,5 +10,10 @@
 		<h2><a id="login_form_btn" class="btn btn-primary w-300px">로그인</a></h2>
 </div>
 <script>
-	
+$('#login_form_btn').click(function(){
+	$('#login_form').attr({
+		action : "${context}/member/login",	
+		method : "post"
+	}).submit();
+});
 </script>

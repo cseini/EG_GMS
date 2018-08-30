@@ -40,5 +40,14 @@
 </div>
 </div>
 <script>
-
+	$('#join_form_btn').click(function(){
+		/*var form = document.getElementById('join_form');
+		form.action = app.x()+"/member/add";
+		form.method = "post";
+		form.submit();*/
+		$('#join_form').attr({
+			action: "${context}/member/add",
+			method: "post"
+	}).submit();
+});
 </script>

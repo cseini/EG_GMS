@@ -3,7 +3,7 @@
 <h1> 회원정보수정 </h1><br />
 	<form id="update_member" name="update_member" >
 	<input type="hidden" name="userid" id="userid" />
-		<input type="password" id="password" name="password" placeholder="변경할 비밀번호를 입력하세요."/><br /><br />
+		<input type="password" id="password" name="password" placeholder="이전비밀번호 : ${user.password}"/><br /><br />
 		<input type="email" id="email" name="email" /><br /><br />
 		<input type="tel" id="phone" name="phone" /><br /><br />
 		팀(현재소속팀:${user.teamid})
@@ -29,20 +29,26 @@
 		<a id="update_member_btn" class="btn btn-primary w-25"> 업데이트 </a>
 	</div>
 <script>
-	$('#userid').attr("value", user.get('userid'));
-	$('#email').attr("placeholder", "이전 이메일 : "+user.get('email'));
-	$('#phone').attr("placeholder", "이전 전화번호 : "+user.get('phone'));
+	$('#userid').attr("value", ${user.userid});
+	$('#email').attr("placeholder", "이전 이메일 : ${user.email}");
+	$('#phone').attr("placeholder", "이전 전화번호 : ${user.phone}");
 	var form = document.getElementById('update_member');
 	var roll = document.getElementById('roll');
 	var team = document.getElementsByName('teamid');
 	for(var i=0;i<roll.options.length;i++){
-		if(roll.options[i].value===user.get('roll')){
+		if(roll.options[i].value==='${user.roll}'){
 			roll.options[i].setAttribute("selected","selected");
 		}
 	};
 	for(var i=0;i<team.length;i++){
-		if(team[i].value===user.get('teamid')){
+		if(team[i].value==='${user.teamid}'){
 				team[i].checked=true;
 		}
 	};
+	$('#update_member_btn').click(function(){
+		$('#update_member').attr({
+			action : "${context}/member/modify/${user.userid}"+,
+			method: "post"
+		}).submit();
+	});
 </script>

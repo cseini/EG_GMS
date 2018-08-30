@@ -7,5 +7,11 @@
 	<a id="delete_form_btn" class="btn btn-primary w-300px">탈퇴</a>
 </div>
 <script>
+$('#delete_form_btn').click(function(){
+	$('#delete_form').attr({
+		action : "${context}/member/remove/"+user.get('userid'),
+		method: "post"
+	}).submit();
+});
 </script>
 

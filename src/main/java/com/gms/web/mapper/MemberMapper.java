@@ -2,9 +2,7 @@ package com.gms.web.mapper;
 
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.stereotype.Repository;
-
 import com.gms.web.domain.MemberDTO;
 @Repository
 public interface MemberMapper {
@@ -17,4 +15,6 @@ public interface MemberMapper {
 	public void delete(MemberDTO p);
 	public String login(MemberDTO p);
 	public void logout(Map<?,?>p);
+
+	
 }
