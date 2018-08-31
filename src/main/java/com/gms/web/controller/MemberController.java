@@ -25,13 +25,11 @@ public class MemberController {
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String add(@ModelAttribute("member") MemberDTO member) {
 		logger.info("\n--------- MemberController {} !!-----","add()");
-		String val = "";
+		String val = "add_failed";
 		if(memberService.retrieve(member.getUserid())==null) {
 			memberService.add(member);
 			val="login_failed";
-		} else {
-			val="add_failed";
-		}
+		} 
 		return val;
 	}
 	@RequestMapping("/list")
@@ -49,7 +47,7 @@ public class MemberController {
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modify(@ModelAttribute("user") MemberDTO user) {
 		logger.info("\n--------- MemberController {} !!-----","modify()");
-		memberService.modify(member);
+		memberService.modify(user);
 		return "retrieve";
 	}
 	@RequestMapping(value="/remove", method=RequestMethod.POST)
