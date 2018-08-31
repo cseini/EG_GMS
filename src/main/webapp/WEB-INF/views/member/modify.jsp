@@ -45,7 +45,7 @@
 	$('#update_member_btn').click(function(){
 		if($('#password').val()==='${user.password}'){
 			alert("비밀번호가 이전과 동일합니다.");
-		} else ('#password').val()===""){
+		} else if($('#password').val()===''){
 			alert("변경할 비밀번호를 입력해주세요.");
 		} else {
 			$('#update_member').attr({
