@@ -9,7 +9,7 @@
 <script>
 $('#delete_form_btn').click(function(){
 	$('#delete_form').attr({
-		action : "${context}/member/remove/${user.userid}",
+		action : "${context}/member/remove",
 		method: "post"
 	}).submit();
 });

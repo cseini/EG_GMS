@@ -1,18 +1,15 @@
 package com.gms.web.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.gms.web.domain.MemberDTO;
 import com.gms.web.service.MemberService;
@@ -41,26 +38,25 @@ public class MemberController {
 	public void list() {}
 	@RequestMapping("/search")
 	public void search() {}
-	@RequestMapping("/retrieve/{userid}")
-	public String retrieve(Model model, @PathVariable String userid) {
+	@RequestMapping("/retrieve")
+	public String retrieve(@ModelAttribute("user") MemberDTO user) {
 		logger.info("\n--------- MemberController {} !!-----","retrieve()");
-		memberService.retrieve(userid);
+		memberService.retrieve(user.getUserid());
 		return "retrieve";
 	}
 	@RequestMapping("/count")
 	public void count() {}
-	@RequestMapping(value="/modify/{userid}", method=RequestMethod.POST)
-	public String modify(Model model, @ModelAttribute MemberDTO member,  @PathVariable String userid) {
+	@RequestMapping(value="/modify", method=RequestMethod.POST)
+	public String modify(@ModelAttribute("user") MemberDTO user) {
 		logger.info("\n--------- MemberController {} !!-----","modify()");
-		member.setUserid(userid);
 		memberService.modify(member);
-		model.addAttribute("user",memberService.retrieve(userid));
 		return "retrieve";
 	}
-	@RequestMapping(value="/remove/{userid}", method=RequestMethod.POST)
-	public String remove(@ModelAttribute MemberDTO member, @PathVariable String userid){
+	@RequestMapping(value="/remove", method=RequestMethod.POST)
+	public String remove(@ModelAttribute MemberDTO member,
+			@ModelAttribute("user") MemberDTO user){
 		logger.info("\n--------- MemberController {} !!-----","remove()");
-		member.setUserid(userid);
+		member.setUserid(user.getUserid());
 		memberService.remove(member);
 		return "redirect:/";
 	}
@@ -68,8 +64,6 @@ public class MemberController {
 	public String login(Model model, @ModelAttribute("member") MemberDTO member) {
 		logger.info("\n--------- MemberController {} !!-----","login()");
 		String loginval = "login_failed";
-		Map<String,String> p = new HashMap<>();
-		p.put("userid", member.getUserid());
 		if(memberService.login(member).equals("1")) {
 			model.addAttribute("user", memberService.retrieve(member.getUserid()));
 			loginval = "login_success";
@@ -77,8 +71,9 @@ public class MemberController {
 		return loginval;
 	}
 	@RequestMapping("/logout")
-	public String logout() {
+	public String logout(SessionStatus sessionStatus) {
 		logger.info("\n--------- MemberController {} !!-----","logout()");
+		sessionStatus.setComplete();
 		return "redirect:/";
 	}
 	@RequestMapping("/fileupload")

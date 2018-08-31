@@ -4,8 +4,8 @@
 	<form id="update_member" name="update_member"  >
 	<input type="hidden" name="userid" id="userid" value="${user.userid}"/>
 		<input type="password" id="password" name="password" placeholder="이전비밀번호 : ${user.password}"/><br /><br />
-		<input type="email" id="email" name="email" /><br /><br />
-		<input type="tel" id="phone" name="phone" /><br /><br />
+		<input type="email" id="email" name="email" placeholder="${user.email}"/><br /><br />
+		<input type="tel" id="phone" name="phone" placeholder="${user.phone}"/><br /><br />
 		팀(현재소속팀:${user.teamid})
 			<input type="radio" name="teamid" id="teamid_0" value="none" checked="checked" /> 없음
 			<input type="radio" name="teamid" id="teamid_1" value="nolja" /> 걍놀자
@@ -29,8 +29,6 @@
 		<a id="update_member_btn" class="btn btn-primary w-25"> 업데이트 </a>
 	</div>
 <script>
-	$('#email').attr("placeholder", "이전 이메일 : ${user.email}");
-	$('#phone').attr("placeholder", "이전 전화번호 : ${user.phone}");
 	var form = document.getElementById('update_member');
 	var roll = document.getElementById('roll');
 	var team = document.getElementsByName('teamid');
@@ -45,9 +43,15 @@
 		}
 	};
 	$('#update_member_btn').click(function(){
-		$('#update_member').attr({
-			action : "${context}/member/modify/${user.userid}",
-			method: "post"
-		}).submit();
+		if($('#password').val()==='${user.password}'){
+			alert("비밀번호가 이전과 동일합니다.");
+		} else ('#password').val()===""){
+			alert("변경할 비밀번호를 입력해주세요.");
+		} else {
+			$('#update_member').attr({
+				action : "${context}/member/modify",
+				method: "post"	
+			}).submit();
+		}
 	});
 </script>

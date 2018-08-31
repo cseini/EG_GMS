@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <footer class="footer bg-light">
+${user.name}
   <div class="container">
     <div class="row">
       <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
         <ul class="list-inline mb-2">
           <li class="list-inline-item">
-            <a href="#">About     '${user.name }'</a>
+            <a href="#">About</a>
           </li>
           <li class="list-inline-item">&sdot;</li>
           <li class="list-inline-item">
