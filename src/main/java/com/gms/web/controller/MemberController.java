@@ -52,10 +52,12 @@ public class MemberController {
 	}
 	@RequestMapping(value="/remove", method=RequestMethod.POST)
 	public String remove(@ModelAttribute MemberDTO member,
-			@ModelAttribute("user") MemberDTO user){
+			@ModelAttribute("user") MemberDTO user,
+			SessionStatus session){
 		logger.info("\n--------- MemberController {} !!-----","remove()");
 		member.setUserid(user.getUserid());
 		memberService.remove(member);
+		session.setComplete();
 		return "redirect:/";
 	}
 	@RequestMapping(value="/login", method=RequestMethod.POST)
@@ -69,9 +71,9 @@ public class MemberController {
 		return loginval;
 	}
 	@RequestMapping("/logout")
-	public String logout(SessionStatus sessionStatus) {
+	public String logout(SessionStatus session) {
 		logger.info("\n--------- MemberController {} !!-----","logout()");
-		sessionStatus.setComplete();
+		session.setComplete();
 		return "redirect:/";
 	}
 	@RequestMapping("/fileupload")
